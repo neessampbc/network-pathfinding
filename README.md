@@ -1,89 +1,54 @@
-# Network Pathfinding
+# GRAPHS PROJECT
 
-CLI-based C++ project for weighted directed graph analysis.  
-It supports fast adjacency queries and shortest-path routing using Dijkstra's algorithm with a heap-backed priority queue.
+To compile type:
 
-## Highlights
+`make all`
 
-- Directed, weighted graph representation using an adjacency list
-- Adjacency query utility for edge existence and edge weight lookup
-- Single-source shortest paths with Dijkstra's algorithm
-- Path reconstruction from source to each destination vertex
-- Deterministic output ordering from vertex `1` to `N`
+To clean object files and executables type:
 
-## Tech Stack
+`make clean`
 
-- Language: `C++17`
-- Data structures: adjacency list, binary heap priority queue
-- Build system: `Makefile`
+To run the create and test graph routine, type:
 
-## Build
+`./CreateGraphAndTest <GRAPH_FILE> <ADJACENCY_QUERYFILE>`
 
-```bash
-make all
-```
-
-Clean build outputs:
-
-```bash
-make clean
-```
-
-## Usage
-
-### 1) Adjacency Queries
-
-```bash
-./CreateGraphAndTest <GRAPH_FILE> <ADJACENCY_QUERYFILE>
-```
+where `<GRAPH_FILE>` is the file used to create the graph and
+`<ADJACENCY_QUERYFILE>` is the file used to check if vertices are adjacent.
 
 Example:
 
-```bash
-./CreateGraphAndTest Graph1.txt AdjacencyQueries1.txt
-```
+`./CreateGraphAndTest Graph1.txt AdjacencyQueries1.txt`
 
-Output format:
+Expected output format for each query:
 
-- `<u> <v>: connected <weight>`
-- `<u> <v>: not_connected`
+`<u> <v>: connected <weight>`
 
-### 2) Shortest Paths
+or
 
-```bash
-./FindPaths <GRAPH_FILE> <STARTING_VERTEX>
-```
+`<u> <v>: not_connected`
+
+To run the find paths in graph routine, type:
+
+`./FindPaths <GRAPH_FILE> <STARTING_VERTEX>`
+
+where `<GRAPH_FILE>` is the file used to create the graph and
+`<STARTING_VERTEX>` is the starting vertex for shortest paths.
 
 Example:
 
-```bash
-./FindPaths Graph2.txt 1
-```
+`./FindPaths Graph2.txt 1`
 
-Output format:
+Expected output format for each target vertex from `1` to `N`:
 
-- Reachable: `<target>: <path vertices> cost: <total_cost>`
-- Unreachable: `<target>: not_possible`
+`<target>: <path vertices separated by spaces> cost: <total_cost>`
 
-## Input Format
+or
 
-Graph files use:
+`<target>: not_possible`
 
-- First line: total number of vertices `N` (vertices are `1..N`)
-- Remaining lines:
-  - `<vertex> <neighbor_1> <weight_1> <neighbor_2> <weight_2> ...`
-  - A line with only `<vertex>` means no outgoing edges
+Deliverables:
 
-## Example (Shortest Paths)
-
-From source vertex `1`:
-
-```text
-1: 1 cost: 0.0
-2: 1 2 cost: 2.0
-3: 1 4 3 cost: 3.0
-4: 1 4 cost: 1.0
-5: 1 4 5 cost: 3.0
-6: 1 4 7 6 cost: 6.0
-7: 1 4 7 cost: 5.0
-```
+- `README.md`
+- `CreateGraphAndTest.cc`
+- `FindPaths.cc`
+- `graph.h`
